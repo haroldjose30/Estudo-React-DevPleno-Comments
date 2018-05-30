@@ -1,36 +1,36 @@
 import React from 'react';
 import App from './App';
 
-import { shallow, mount } from 'enzyme'
+import { shallow, mount, render } from 'enzyme'
 
 describe('<App />',()=> {
 
-  const base =  {
+  const baseMock =  {
     syncState: jest.fn()
   }
 
   it('renders without crashing', () => {
-    const wrapper = shallow(<App base={base}/>)
+    const wrapper = shallow(<App base={baseMock}/>)
     expect(wrapper.length).toBe(1)
   });
 
   it('should have .container class', ()=>{
-    const wrapper = shallow(<App base={base}/>)
+    const wrapper = shallow(<App base={baseMock}/>)
     expect(wrapper.is('.container')).toBe(true)
   })
 
   it('show Comments',()=>{
-    const wrapper = shallow(<App base={base}/>)
+    const wrapper = shallow(<App base={baseMock}/>)
     expect(wrapper.find('Comments').length).toBe(1)
   })
 
   it('show NewComment',()=>{
-    const wrapper = shallow(<App base={base}/>)
+    const wrapper = shallow(<App base={baseMock}/>)
     expect(wrapper.find('NewComment').length).toBe(1)
   })
 
   it('add New Comment with postNewComment',()=>{
-    const wrapper = mount(<App base={base}/>)
+    const wrapper = mount(<App base={baseMock}/>)
     wrapper.instance().postNewComment({comment:'test'})
     wrapper.instance().postNewComment({comment:'test'})
     wrapper.instance().postNewComment({comment:'test'})
